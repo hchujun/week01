@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>生成和删除div</title>
+</head>
+<body>
+  <!-- 生成div的按钮 -->
+  <button onclick="createDiv()">生成div</button>
+  <!-- 删除所有div的按钮 -->
+  <button onclick="deleteDivs()">删除所有div</button>
+
+  <!-- 用于容纳生成的div的div -->
+  <div id="container"></div>
+
+  <script>
+    // 用于跟踪生成的div的编号
+    var divCount = 1;
+
+    // 生成div的函数
+    function createDiv() {
+      // 获取用于容纳div的div
+      var container = document.getElementById("container");
+      // 循环生成三个div
+      for (var i = 0; i < 3; i++) {
+        // 创建一个新的div元素
+        var div = document.createElement("div");
+        // 设置div的内容为"这是项目x的编号"，其中x为divCount的值
+        div.innerHTML = "这是项目" + divCount + "的编号";
+        // 为div添加点击事件，当点击div时，会调用deleteDiv函数来删除自身
+        div.setAttribute("onclick", "deleteDiv(this)");
+        // 将生成的div添加到容纳div的div中
+        container.appendChild(div);
+        // 递增divCount的值，以便下一个div的编号正确
+        divCount++;
+      }
+    }
+
+    // 删除所有div的函数
+    function deleteDivs() {
+      // 获取用于容纳div的div
+      var container = document.getElementById("container");
+      // 将容纳div的div的innerHTML属性设置为空字符串，从而清空所有div
+      container.innerHTML = "";
+    }
+
+    // 删除单个div的函数
+    function deleteDiv(element) {
+      // 获取要删除的div的父节点
+      var parent = element.parentNode;
+      // 从父节点中删除要删除的div
+      parent.removeChild(element);
+    }
+  </script>
+</body>
+</html>

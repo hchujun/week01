@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>生成和删除div</title>
+</head>
+<body>
+  <button onclick="createDiv()">生成div</button>
+  <button onclick="deleteDivs()">删除所有div</button>
+
+  <div id="container"></div>
+
+  <script>
+    var divCount = 1;
+
+    function createDiv() {
+      var container = document.getElementById("container");
+      for (var i = 0; i < 3; i++) {
+        var div = document.createElement("div");
+        div.innerHTML = "这是项目" + divCount + "的编号";
+        div.setAttribute("onclick", "deleteDiv(this)");
+        container.appendChild(div);
+        divCount++;
+      }
+    }
+
+    function deleteDivs() {
+      var container = document.getElementById("container");
+      container.innerHTML = "";
+    }
+
+    function deleteDiv(element) {
+      element.parentNode.removeChild(element);
+    }
+  </script>
+</body>
+</html>
